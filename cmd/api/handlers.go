@@ -11,7 +11,7 @@ import (
 	"github.com/smetanamolokovich/mustafar_task/pkg/validator"
 )
 
-func (app *application) getValue(w http.ResponseWriter, r *http.Request) {
+func (app *application) getValueHandler(w http.ResponseWriter, r *http.Request) {
 	key, err := app.readKeyParam(r)
 	if err != nil {
 		app.notFoundResponse(w, r)

@@ -12,7 +12,7 @@ func (app *application) routes() *httprouter.Router {
 	router.NotFound = http.HandlerFunc(app.notFoundResponse)
 	router.MethodNotAllowed = http.HandlerFunc(app.methodNotAllowedResponse)
 
-	router.HandlerFunc(http.MethodGet, "/v1/value/:key", app.getValue)
+	router.HandlerFunc(http.MethodGet, "/v1/value/:key", app.getValueHandler)
 	router.HandlerFunc(http.MethodPost, "/v1/value", app.setValue)
 
 	return router
