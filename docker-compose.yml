@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+    api:
+        build: .
+        ports:
+            - '8000:8000'
+        depends_on:
+            - db
+        environment:
+            DB_DSN: 'postgres://kvstore:11223344@db/kvstore?sslmode=disable'
+            PORT: 8000
+        links:
+            - db
+
+    db:
+        restart: always
+        image: postgres:latest
+        volumes:
+            - ./.database/postgres/data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_HOST: db
+            POSTGRES_DB: 'kvstore'
+            POSTGRES_USER: 'kvstore'
+            POSTGRES_PASSWORD: '11223344'
+        ports:
+            - '5437:5432'
